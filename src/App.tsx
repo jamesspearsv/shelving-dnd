@@ -3,11 +3,21 @@ import Droppable from './components/Droppable';
 import Draggable from './components/Draggable';
 import { useState } from 'react';
 
-const INITIAL_LIST = ['item 1', 'item 2', 'item 3'];
+export interface Book {
+  call_no: string;
+  title: string;
+  author: string
+}
+
+import BOOK_LIST from './assets/level1.json' with { type: "json" };
+
+
+// const INITIAL_LIST = ['item 1', 'item 2', 'item 3'];
 
 function App() {
-  const [list, setList] = useState(
-    INITIAL_LIST.sort(() => Math.random() - Math.random())
+  const [list, setList] = useState(BOOK_LIST
+    // .sort(() => 
+    // Math.random() - Math.random())
   );
 
   function handleDragEnd(event: DragEndEvent) {
@@ -38,9 +48,7 @@ function App() {
         <DndContext onDragEnd={handleDragEnd}>
           {list.map((item, index) => (
             <Droppable key={item} index={index} item={item}>
-              <Draggable key={item} index={index} item={item}>
-                {item}
-              </Draggable>
+              <Draggable key={item} index={index} item={item} />
             </Droppable>
           ))}
         </DndContext>

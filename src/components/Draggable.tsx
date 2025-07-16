@@ -1,9 +1,10 @@
 import { useDraggable } from '@dnd-kit/core';
 import type { PropsWithChildren } from 'react';
+import type { Book } from '../App';
 
 interface DraggableProps extends PropsWithChildren {
   index: number;
-  item: string;
+  item: Book;
 }
 
 export default function Draggable(props: DraggableProps) {
@@ -11,15 +12,24 @@ export default function Draggable(props: DraggableProps) {
     id: props.index,
   });
 
-  const style = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : undefined;
+  const style = {
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : undefined,
+    height: '30vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  };
 
   return (
     <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      {props.children}
+      <div>
+        <p>{props.item.title}</p>
+        <p>by</p>
+        <p>{props.item.author}</p>
+      </div>
+      <p>{props.item.call_no}</p>
     </button>
   );
 }

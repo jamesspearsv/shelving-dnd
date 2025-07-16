@@ -1,0 +1,37 @@
+[
+  {
+    "call_no": "SMI",
+    "title": "The House I Build",
+    "author": "John Smith"
+  },
+  {
+    "call_no": "DOE",
+    "title": "The Secret of the Shadows",
+    "author": "Jane Doe"
+  },
+  {
+    "call_no": "BLA",
+    "title": "Wings of the Phoenix",
+    "author": "Emily Blake"
+  },
+  {
+    "call_no": "JOH",
+    "title": "Beyond the Stars",
+    "author": "Michael Johnson"
+  },
+  {
+    "call_no": "TAY",
+    "title": "Love in the Time of Chaos",
+    "author": "Sarah Taylor"
+  },
+  {
+    "call_no": "WIL",
+    "title": "Echoes of the Past",
+    "author": "David Wilson"
+  },
+  {
+    "call_no": "GAR",
+    "title": "The Last Escape",
+    "author": "Laura Garcia"
+  }
+]
