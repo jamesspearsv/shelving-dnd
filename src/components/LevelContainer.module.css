@@ -1,0 +1,37 @@
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--border-style);
+  padding-bottom: 1rem;
+  padding-inline: 1rem;
+}
+
+.level {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-inline: 1rem;
+}
+
+.level > * {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info span {
+  font-size: 0.75rem;
+}
+
+.info > *:not(em) {
+  font-weight: 700;
+}

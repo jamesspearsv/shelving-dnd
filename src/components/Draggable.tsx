@@ -16,20 +16,12 @@ export default function Draggable(props: DraggableProps) {
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
       : undefined,
-    height: '30vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    width: 'fit-content',
   };
 
   return (
     <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      <div>
-        <p>{props.item.title}</p>
-        <p>by</p>
-        <p>{props.item.author}</p>
-      </div>
-      <p>{props.item.call_no}</p>
+      {props.children}
     </button>
   );
 }

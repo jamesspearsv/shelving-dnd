@@ -2,7 +2,6 @@ import { useDroppable } from '@dnd-kit/core';
 import type { PropsWithChildren } from 'react';
 
 interface DroppableProps extends PropsWithChildren {
-  item: string;
   index: number;
 }
 
