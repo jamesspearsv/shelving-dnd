@@ -23,6 +23,9 @@ export default function LevelContainer(props: LevelContainerProps) {
         () => Math.random() - Math.random() + Math.random() * 0.1
       );
     });
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
   }, [props.level]);
 
   useEffect(() => {
