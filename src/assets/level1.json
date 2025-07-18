@@ -1,8 +1,8 @@
 [
   {
-    "call_no": "SMI",
-    "title": "The House I Built",
-    "author": "John Smith"
+    "call_no": "BLA",
+    "title": "Wings of the Phoenix",
+    "author": "Emily Blake"
   },
   {
     "call_no": "DOE",
@@ -10,14 +10,19 @@
     "author": "Jane Doe"
   },
   {
-    "call_no": "BLA",
-    "title": "Wings of the Phoenix",
-    "author": "Emily Blake"
+    "call_no": "GAR",
+    "title": "The Last Escape",
+    "author": "Laura Garcia"
   },
   {
     "call_no": "JOH",
     "title": "Beyond the Stars",
     "author": "Michael Johnson"
+  },
+  {
+    "call_no": "SMI",
+    "title": "The House I Built",
+    "author": "John Smith"
   },
   {
     "call_no": "TAY",
@@ -28,10 +33,5 @@
     "call_no": "WIL",
     "title": "Echoes of the Past",
     "author": "David Wilson"
-  },
-  {
-    "call_no": "GAR",
-    "title": "The Last Escape",
-    "author": "Laura Garcia"
   }
 ]

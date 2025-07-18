@@ -35,3 +35,11 @@
 .info > *:not(em) {
   font-weight: 700;
 }
+
+.levelCompleted {
+  color: var(--clr-success);
+}
+
+.levelInProgress {
+  color: var(--clr-danger);
+}
