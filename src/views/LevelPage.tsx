@@ -1,12 +1,29 @@
 import LevelContainer from '../components/LevelContainer';
-import BOOK_LIST from '../assets/level1.json'; //with { type: 'json' };
 import { useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import type { LevelItem } from '../actions';
 
 export default function LevelPage() {
-  const { levelNumber } = useParams();
+  const { levelNumber } = useParams(); // url param indicating the active level
+  const [level, setLevel] = useState<LevelItem[] | undefined>(undefined);
+
+  useEffect(() => {
+    if (!levelNumber) return;
+
+    (async () => {
+      const storedLevels = localStorage.getItem('shelving-dnd-levels');
+      if (!storedLevels) return;
+      const levels = await JSON.parse(storedLevels);
+
+      console.log(levels);
+
+      setLevel(levels[Number(levelNumber) - 1]);
+    })();
+  }, [levelNumber]);
+
   return (
     <LevelContainer
-      level={BOOK_LIST}
+      level={level || []}
       levelName="Level 1"
       levelNumber={Number(levelNumber)}
     />

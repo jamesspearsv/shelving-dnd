@@ -1,13 +1,13 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core';
-import type { Book } from '../App';
 import Draggable from './Draggable';
 import Droppable from './Droppable';
 import { useEffect, useRef, useState } from 'react';
 import styles from './LevelContainer.module.css';
 import { Link } from 'react-router';
+import type { LevelItem } from '../actions';
 
 interface LevelContainerProps {
-  level: Book[];
+  level: LevelItem[];
   levelName: string;
   levelNumber: number;
 }
@@ -15,11 +15,15 @@ interface LevelContainerProps {
 export default function LevelContainer(props: LevelContainerProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
   const [correctItems, setCorrectItems] = useState(0);
-  const [list, setList] = useState(() => {
-    return [...props.level].sort(
-      () => Math.random() - Math.random() + Math.random() * 0.1
-    );
-  });
+  const [list, setList] = useState<LevelItem[]>([]);
+
+  useEffect(() => {
+    setList(() => {
+      return props.level.toSorted(
+        () => Math.random() - Math.random() + Math.random() * 0.1
+      );
+    });
+  }, [props.level]);
 
   useEffect(() => {
     let c = 0;
