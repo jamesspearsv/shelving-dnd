@@ -4,10 +4,12 @@ import Draggable from './Draggable';
 import Droppable from './Droppable';
 import { useEffect, useRef, useState } from 'react';
 import styles from './LevelContainer.module.css';
+import { Link } from 'react-router';
 
 interface LevelContainerProps {
   level: Book[];
   levelName: string;
+  levelNumber: number;
 }
 
 export default function LevelContainer(props: LevelContainerProps) {
@@ -97,6 +99,10 @@ export default function LevelContainer(props: LevelContainerProps) {
       <dialog ref={modalRef}>
         <article>
           <h2>Level Completed!</h2>
+          <Link to={`/lvl/${props.levelNumber + 1}`}>
+            {' '}
+            Continue to next level
+          </Link>
         </article>
       </dialog>
     </section>

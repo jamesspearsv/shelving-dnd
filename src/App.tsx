@@ -1,19 +1,22 @@
 export interface Book {
   call_no: string;
   title: string;
-  author: string
+  author: string;
 }
 
-import BOOK_LIST from './assets/level1.json' with { type: "json" };
-import LevelContainer from './components/LevelContainer';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import StartPage from './views/StartPage';
+import LevelPage from './views/LevelPage';
 
+const router = createBrowserRouter([
+  { path: '/', element: <StartPage /> },
+  { path: '/lvl/:levelNumber', element: <LevelPage /> },
+]);
 
 function App() {
-
-
   return (
     <main>
-      <LevelContainer level={BOOK_LIST} levelName='Level 1' />
+      <RouterProvider router={router} />
     </main>
   );
 }
