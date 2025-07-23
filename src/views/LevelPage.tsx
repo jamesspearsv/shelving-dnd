@@ -1,7 +1,7 @@
 import LevelContainer from '../components/LevelContainer';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import type { LevelItem } from '../lib/utils';
+import type { LevelItem } from '@src/lib/types';
 
 export default function LevelPage() {
   const { levelNumber } = useParams(); // url param indicating the active level

@@ -5,13 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './LevelContainer.module.css';
 import { Link } from 'react-router';
 import type { LevelItem } from '../lib/utils';
-
-// TODO: move to types file
-interface LevelContainerProps {
-  level: LevelItem[];
-  levelName: string;
-  levelNumber: number;
-}
+import type { LevelContainerProps } from '@src/lib/types';
 
 export default function LevelContainer(props: LevelContainerProps) {
   const modalRef = useRef<HTMLDialogElement>(null);

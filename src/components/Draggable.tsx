@@ -1,12 +1,5 @@
 import { useDraggable } from '@dnd-kit/core';
-import type { PropsWithChildren } from 'react';
-import type { Book } from '../App';
-
-// TODO: move to types file
-interface DraggableProps extends PropsWithChildren {
-  index: number;
-  item: Book;
-}
+import type { DraggableProps } from '@src/lib/types';
 
 export default function Draggable(props: DraggableProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({

@@ -1,16 +1,6 @@
 import Papa from 'papaparse';
-
-// TODO: move to separate const file
-const levelInfo: string =
-  'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNwT7S_YjodphLlQXxt9NqXX2o7ibX__wjdXCAnyIV9ZXvnAtPK-ZLPifLJm8MKdF8DlTIg1RYgCdd/pub?gid=0&single=true&output=csv';
-
-// TODO: move to types file
-export interface LevelItem {
-  call_no: string;
-  author: string;
-  title: string;
-  [key: string]: string;
-}
+import type { LevelItem } from '@src/lib/types';
+import { levelInfo } from '@src/lib/const';
 
 /**
  * Fetch level information from a remote csv source

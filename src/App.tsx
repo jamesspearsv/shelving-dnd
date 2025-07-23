@@ -1,14 +1,7 @@
-// TODO: move to types file
-export interface Book {
-  call_no: string;
-  title: string;
-  author: string;
-}
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import StartPage from './views/StartPage';
-import LevelPage from './views/LevelPage';
-import { fetchLevels } from './lib/utils';
+import StartPage from '@src/views/StartPage';
+import LevelPage from '@src/views/LevelPage';
+import { fetchLevels } from '@src/lib/utils';
 import { useEffect } from 'react';
 
 const router = createBrowserRouter([
