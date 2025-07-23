@@ -4,8 +4,7 @@ import Droppable from './Droppable';
 import { useEffect, useRef, useState } from 'react';
 import styles from './LevelContainer.module.css';
 import { Link } from 'react-router';
-import type { LevelItem } from '../lib/utils';
-import type { LevelContainerProps } from '@src/lib/types';
+import type { LevelContainerProps, LevelItem } from '@src/lib/types';
 
 export default function LevelContainer(props: LevelContainerProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
