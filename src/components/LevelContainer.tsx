@@ -3,7 +3,7 @@ import Draggable from './Draggable';
 import Droppable from './Droppable';
 import { useEffect, useRef, useState } from 'react';
 import styles from './LevelContainer.module.css';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import type { LevelContainerProps, LevelItem } from '@src/lib/types';
 
 export default function LevelContainer(props: LevelContainerProps) {

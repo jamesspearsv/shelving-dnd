@@ -1,0 +1,14 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.startButton {
+  padding: 1rem;
+  background-color: var(--clr-accent-0);
+  border-radius: var(--border-radius);
+  color: var(--clr-light-0);
+}
