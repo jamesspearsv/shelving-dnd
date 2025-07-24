@@ -15,6 +15,10 @@ export interface DroppableProps extends PropsWithChildren {
   index: number;
 }
 
+export interface ModalProps extends PropsWithChildren {
+  ref: React.RefObject<HTMLDialogElement | null>;
+}
+
 export interface LevelContainerProps {
   level: LevelItem[];
   levelName: string;

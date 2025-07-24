@@ -1,22 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from './StartPage.module.css';
-import { useEffect, useRef, useState } from 'react';
+import { useModal } from '@src/lib/hooks';
+import Modal from '@src/components/Modal';
 
-// TODO: Add start screen content
-// - General information about the game
-// - Game instructions
-// - A new game start button
-// - A level select button
 export default function StartPage() {
-  const modalRef = useRef<HTMLDialogElement | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(modalRef.current);
-    if (!modalRef.current) return;
-    if (modalOpen) modalRef.current.showModal();
-    else modalRef.current.close();
-  }, [modalOpen]);
+  const modal = useModal();
 
   return (
     <section className={styles.pageContainer}>
@@ -27,14 +15,14 @@ export default function StartPage() {
       <button
         onClick={() => {
           console.log('opening');
-          setModalOpen(true);
+          modal.setOpen(true);
         }}
       >
         Learn More
       </button>
-      <dialog ref={modalRef} onClose={() => setModalOpen(false)}>
-        <article>
-          <h2>Learn More</h2>
+      <Modal ref={modal.ref}>
+        <div className={styles.modalContent}>
+          <h2>Instructions and Info</h2>
           <p>
             This is a simple game where you are tasked with organizing a set of
             books in a series of progressively challenging levels.
@@ -47,9 +35,9 @@ export default function StartPage() {
             Once all the items are in their correct spot you have completed the
             level and will progress to the next one. Good luck!
           </p>
-          <button type="reset" onClick={() => setModalOpen(false)}></button>
-        </article>
-      </dialog>
+        </div>
+        <button type="reset" onClick={() => modal.setOpen(false)}></button>
+      </Modal>
     </section>
   );
 }

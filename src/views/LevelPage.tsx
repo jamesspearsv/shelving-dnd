@@ -7,7 +7,6 @@ export default function LevelPage() {
   const { levelNumber } = useParams(); // url param indicating the active level
   const [level, setLevel] = useState<LevelItem[] | null>(null);
 
-  // TODO: extract into function or hook
   useEffect(() => {
     if (!levelNumber) return;
 
