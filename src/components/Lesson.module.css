@@ -1,0 +1,31 @@
+.lesson {
+  display: flex;
+}
+
+.shelf {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.slot {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slot > * {
+  display: flex;
+  border: solid 5px black;
+  width: 10vw;
+  min-height: 50vh;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.book > p:last-child {
+  margin-top: auto;
+}
