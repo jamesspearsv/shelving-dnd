@@ -1,7 +1,9 @@
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, type DragEndEvent } from '@dnd-kit/core';
 import Draggable from './Draggable';
 import Droppable from './Droppable';
 import styles from './Lesson.module.css';
+import { useState } from 'react';
+import { books } from '@src/lib/const';
 
 const lesson = {
   book: { call_no: 'CAR', author: 'Amiee Carter', title: 'Chance Encounter' },
@@ -23,17 +25,19 @@ const lesson = {
       title: 'Journey to the Unknown',
     },
   ],
-  answer: 0,
+  answer: 1,
 };
 
 export default function Lesson() {
+  const [dropped, setDropped] = useState(false);
+  const [shelf, setShelf] = useState([...lesson.shelf]);
   // TODO: Build lesson component
   /*
     - [ ] Build lesson data structure
-    - [ ] Position book to shelve in the corner of the page
-    - [ ] Position books that are 'already on the shelf'
-    - [ ] Add droppable slots for book to shelve
-    - [ ] Add logic to check books location
+    - [x] Position book to shelve in the corner of the page
+    - [x] Position books that are 'already on the shelf'
+    - [x] Add droppable slots for book to shelve
+    - [ ] TODO: Add logic to check books location
     */
 
   /*
@@ -44,33 +48,57 @@ export default function Lesson() {
     - a hint for the user
     */
 
-  // TODO: add drop logic
+  function handleDrop(event: DragEndEvent) {
+    console.log(event.collisions);
+
+    if (!event.collisions) return;
+
+    const collisions = event.collisions;
+    const newShelf = [...shelf];
+
+    // find max index in collisions
+    let index = 0;
+    collisions.forEach((collision) => {
+      if ((collision.id as number) >= index) index = collision.id as number;
+    });
+
+    // insert book into shelf
+    newShelf.splice(index, 0, lesson.book);
+
+    // update state
+    setShelf(newShelf);
+    setDropped(true);
+  }
+
   return (
-    <DndContext>
+    <DndContext onDragEnd={handleDrop}>
       <section className={styles.lesson}>
         <div>
           {/* book to shelve */}
-          <Draggable index={-1} item={lesson.book}>
-            <div className={styles.slot}>
-              <div className={styles.book}>
-                <p>{lesson.book.title}</p>
-                <p>{lesson.book.author}</p>
-                <p>{lesson.book.call_no}</p>
+          {!dropped && (
+            <Draggable index={-1} item={lesson.book}>
+              <div className={styles.slot}>
+                <div className={styles.book}>
+                  <p>{lesson.book.title}</p>
+                  <p>{lesson.book.author}</p>
+                  <p>{lesson.book.call_no}</p>
+                </div>
               </div>
-            </div>
-          </Draggable>
+            </Draggable>
+          )}
         </div>
         <div className={styles.shelf}>
           {/* shelved books */}
-          {lesson.shelf.map((book, index) => {
+          {shelf.map((book, index) => {
             return (
               <div key={index} className={styles.slot}>
-                <div className={styles.book}>
-                  <p>{book.title}</p>
-                  <p>{book.author}</p>
-                  <p>{book.call_no}</p>
-                </div>
-                <Droppable index={index}>{index}</Droppable>
+                <Droppable index={index}>
+                  <div className={styles.book}>
+                    <p>{book.title}</p>
+                    <p>{book.author}</p>
+                    <p>{book.call_no}</p>
+                  </div>
+                </Droppable>
               </div>
             );
           })}

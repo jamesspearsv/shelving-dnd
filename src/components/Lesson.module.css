@@ -6,24 +6,31 @@
   display: flex;
   gap: 0.5rem;
   margin-left: auto;
+  border-bottom: solid black 15px;
 }
 
 .slot {
   display: flex;
   gap: 0.5rem;
+  padding: 1.25rem;
+  padding-bottom: 0;
+  /* background-color: red; */
 }
 
 .slot > * {
-  display: flex;
-  border: solid 5px black;
-  width: 10vw;
-  min-height: 50vh;
+  padding: 0.5rem;
 }
 
 .book {
+  background-color: var(--clr-accent-0);
+  color: var(--clr-light-0);
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  width: 10vw;
+  min-height: 50vh;
+  padding: 0.75rem;
+  padding-bottom: 0;
 }
 
 .book > p:last-child {
