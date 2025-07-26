@@ -1,3 +1,7 @@
+.lessonContainer {
+  margin-inline: 1.75rem;
+}
+
 .lesson {
   display: flex;
 }

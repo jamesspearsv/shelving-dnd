@@ -3,7 +3,7 @@ import StartPage from '@src/views/StartPage';
 import LevelPage from '@src/views/LevelPage';
 import { fetchLevels } from '@src/lib/utils';
 import { useEffect } from 'react';
-import Lesson from './components/Lesson';
+import Lesson from './components/Lessons/Lesson';
 
 const router = createBrowserRouter([
   { path: '/', element: <StartPage /> },
