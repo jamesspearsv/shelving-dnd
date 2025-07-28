@@ -31,3 +31,14 @@ export interface LevelItem {
   title: string;
   [key: string]: string;
 }
+
+export interface Activity {
+  book: Book;
+  shelf: Book[];
+  answer: number;
+}
+
+export interface Lesson {
+  name: string;
+  activities: Activity[];
+}

@@ -3,12 +3,12 @@ import StartPage from '@src/views/StartPage';
 import LevelPage from '@src/views/LevelPage';
 import { fetchLevels } from '@src/lib/utils';
 import { useEffect } from 'react';
-import Lesson from './components/Lessons/Lesson';
+import LessonPage from './views/LessonPage';
 
 const router = createBrowserRouter([
   { path: '/', element: <StartPage /> },
   { path: '/lvl/:levelNumber', element: <LevelPage /> },
-  { path: '/lesson', element: <Lesson /> },
+  { path: '/lessons/:name', element: <LessonPage /> },
 ]);
 
 let mounted = false;

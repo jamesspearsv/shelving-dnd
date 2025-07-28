@@ -11,6 +11,7 @@ export default function Draggable(props: DraggableProps) {
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
       : undefined,
     width: 'fit-content',
+    cursor: 'grab',
   };
 
   return (

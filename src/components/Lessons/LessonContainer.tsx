@@ -1,37 +1,18 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core';
 import Draggable from '../Draggable';
 import Droppable from '../Droppable';
-import styles from './Lesson.module.css';
+import styles from './LessonContainer.module.css';
 import { useEffect, useState } from 'react';
 import LessonHeader from './LessonHeader';
+import type { Activity } from '@src/lib/types';
 
-const lesson = {
-  name: 'Basic ordering',
-  book: { call_no: 'CAR', author: 'Amiee Carter', title: 'Chance Encounter' },
-  shelf: [
-    { call_no: 'BLA', author: 'Patrick Blackwood', title: 'Hour of Reckoning' },
-    {
-      call_no: 'GRE',
-      author: 'Tara Greenfield',
-      title: 'Last Stand of the Guardians',
-    },
-    {
-      call_no: 'MCA',
-      author: 'James Robert McAllister',
-      title: 'A Dance with Destiny',
-    },
-    {
-      call_no: 'OCO',
-      author: "Marcus O'Connor",
-      title: 'Journey to the Unknown',
-    },
-  ],
-  answer: 1,
-};
-
-export default function Lesson() {
+export default function LessonContainer(props: {
+  name: string;
+  activity: Activity;
+  handleCompletion: () => void;
+}) {
   const [dropped, setDropped] = useState(false);
-  const [shelf, setShelf] = useState([...lesson.shelf]);
+  const [shelf, setShelf] = useState([...props.activity.shelf]);
   const [correct, setCorrect] = useState(false);
   // TODO: Build lesson component
   /*
@@ -40,8 +21,8 @@ export default function Lesson() {
     - [x] Position books that are 'already on the shelf'
     - [x] Add droppable slots for book to shelve
     - [x] Add logic to check books location
-    - [ ] Add lesson reset button
-    - [ ] Add lesson hint
+    - [x] Add lesson reset button
+    - [ ] Add lesson continue button
     */
 
   function handleDragEnd(event: DragEndEvent) {
@@ -59,7 +40,7 @@ export default function Lesson() {
     });
 
     // insert book into shelf
-    newShelf.splice(index, 0, lesson.book);
+    newShelf.splice(index, 0, props.activity.book);
 
     // update state
     setShelf(newShelf);
@@ -67,28 +48,38 @@ export default function Lesson() {
   }
 
   useEffect(() => {
-    const result = shelf[lesson.answer] === lesson.book;
+    const result = shelf[props.activity.answer] === props.activity.book;
     console.log(result);
     if (dropped) {
       setCorrect(result);
     }
-  }, [dropped, shelf]);
+  }, [dropped, props.activity.answer, props.activity.book, shelf]);
+
+  function resetLesson() {
+    setDropped(false);
+    setCorrect(false);
+    setShelf([...props.activity.shelf]);
+  }
+
+  function continueLesson() {
+    props.handleCompletion();
+  }
 
   return (
     <div className={styles.lessonContainer}>
       <p>{correct ? 'Solution correct' : 'Solution Incorrect'}</p>
-      <LessonHeader name={lesson.name} />
+      <LessonHeader name={props.name} />
       <DndContext onDragEnd={handleDragEnd}>
         <section className={styles.lesson}>
           <div>
             {/* book to shelve */}
             {!dropped && (
-              <Draggable index={-1} item={lesson.book}>
+              <Draggable index={-1} item={props.activity.book}>
                 <div className={styles.slot}>
                   <div className={styles.book}>
-                    <p>{lesson.book.title}</p>
-                    <p>{lesson.book.author}</p>
-                    <p>{lesson.book.call_no}</p>
+                    <p>{props.activity.book.title}</p>
+                    <p>{props.activity.book.author}</p>
+                    <p>{props.activity.book.call_no}</p>
                   </div>
                 </div>
               </Draggable>
@@ -119,9 +110,15 @@ export default function Lesson() {
             right.
           </p>
         ) : correct ? (
-          <p>Correct!</p>
+          <div>
+            <p>Correct!</p>
+            <button onClick={continueLesson}>Continue</button>
+          </div>
         ) : (
-          <p>Incorrect. Try Again!</p>
+          <div>
+            <p>Incorrect. Reset the lesson and try again!</p>
+            <button onClick={resetLesson}>Reset</button>
+          </div>
         )}
       </section>
     </div>

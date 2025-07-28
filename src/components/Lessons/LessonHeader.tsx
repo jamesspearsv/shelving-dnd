@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './LessonHeader.module.css';
 import Modal from '../Modal';
 import { useModal } from '@src/lib/hooks';
