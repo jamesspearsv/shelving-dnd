@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
-import styles from './StartPage.module.css';
+import styles from './MainMenu.module.css';
 import { useModal } from '@src/lib/hooks';
 import Modal from '@src/components/Modal';
 
-export default function StartPage() {
+export default function MainMenu() {
   const modal = useModal();
 
   return (
     <section className={styles.pageContainer}>
       <h1>Shelving Practice!</h1>
-      <Link to={'/lvl/1'} className={styles.startButton}>
+      <Link to={'/lessons/basic-ordering'} className={styles.startButton}>
         Start
+      </Link>
+      <Link to={'lessons'} className={styles.startButton}>
+        Lessons
       </Link>
       <button
         onClick={() => {
