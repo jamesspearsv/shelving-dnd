@@ -62,8 +62,12 @@ export default {
             title: 'Beyond the Horizon',
           },
         ],
-        answer: 3,
+        answer: 2,
       },
     ],
+  },
+  'advanced-ordering': {
+    name: 'Advanced Ordering',
+    activities: [],
   },
 } as { [key: string]: Lesson };

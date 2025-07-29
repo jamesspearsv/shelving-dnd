@@ -1,28 +1,30 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 import lessons from '@src/lib/lessons';
-import LessonContainer from '@src/components/Lessons/LessonContainer';
+import Activity from '@src/components/Lessons/Activity';
 
-export default function LessonPage() {
-  //! Look up how to use useParams
+export default function Lesson() {
   const { name } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  // TODO: add logic to parse activity number param
-  const activityParam = searchParams.get('activity');
-  const activityNumber = activityParam ? parseInt(activityParam) : 0;
 
-  // TODO: handle activity completion
+  const activityParam = searchParams.get('activity');
+  let activityNumber = activityParam ? parseInt(activityParam) : 0;
+  if (isNaN(activityNumber)) activityNumber = 0;
+
   function handleCompletion() {
-    // update activity search param
+    if (activityNumber < lesson.activities.length - 1) {
+      setSearchParams({ activity: `${activityNumber + 1}` });
+    } else return; // TODO: handle lesson completion
   }
 
   if (!name) return null;
   if (!(name in lessons)) return null;
 
   const lesson = lessons[name];
+
   return (
-    <LessonContainer
+    <Activity
       name={lesson.name}
-      activity={lesson.activities[0]}
+      activity={lesson.activities[activityNumber]}
       handleCompletion={handleCompletion}
     />
   );

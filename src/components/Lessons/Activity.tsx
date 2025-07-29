@@ -1,30 +1,37 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core';
 import Draggable from '../Draggable';
 import Droppable from '../Droppable';
-import styles from './LessonContainer.module.css';
+import styles from './Activity.module.css';
 import { useEffect, useState } from 'react';
 import LessonHeader from './LessonHeader';
-import type { Activity } from '@src/lib/types';
+import type { Activity, Book } from '@src/lib/types';
 
-export default function LessonContainer(props: {
+export default function Activity(props: {
   name: string;
   activity: Activity;
   handleCompletion: () => void;
 }) {
   const [dropped, setDropped] = useState(false);
-  const [shelf, setShelf] = useState([...props.activity.shelf]);
   const [correct, setCorrect] = useState(false);
-  // TODO: Build lesson component
-  /*
-    - [x] Build lesson data structure
-    - [x] Position book to shelve in the corner of the page
-    - [x] Position books that are 'already on the shelf'
-    - [x] Add droppable slots for book to shelve
-    - [x] Add logic to check books location
-    - [x] Add lesson reset button
-    - [ ] Add lesson continue button
-    */
+  const [shelf, setShelf] = useState<Book[]>([]);
 
+  // reset state when activity shelf changes
+  useEffect(() => {
+    setDropped(false);
+    setCorrect(false);
+    setShelf(props.activity.shelf);
+  }, [props.activity]);
+
+  // check solution when book is dropped
+  useEffect(() => {
+    const answer = shelf[props.activity.answer];
+    const result = answer === props.activity.book;
+    if (dropped) {
+      setCorrect(result);
+    }
+  }, [dropped, props.activity, shelf]);
+
+  // handle drag end event
   function handleDragEnd(event: DragEndEvent) {
     console.log(event.collisions);
 
@@ -47,30 +54,23 @@ export default function LessonContainer(props: {
     setDropped(true);
   }
 
-  useEffect(() => {
-    const result = shelf[props.activity.answer] === props.activity.book;
-    console.log(result);
-    if (dropped) {
-      setCorrect(result);
-    }
-  }, [dropped, props.activity.answer, props.activity.book, shelf]);
-
-  function resetLesson() {
+  // reset current lesson activity
+  function resetActivity() {
     setDropped(false);
     setCorrect(false);
     setShelf([...props.activity.shelf]);
   }
 
+  // handle advancing to next lesson activity
   function continueLesson() {
     props.handleCompletion();
   }
 
   return (
-    <div className={styles.lessonContainer}>
-      <p>{correct ? 'Solution correct' : 'Solution Incorrect'}</p>
+    <div className={styles.container}>
       <LessonHeader name={props.name} />
       <DndContext onDragEnd={handleDragEnd}>
-        <section className={styles.lesson}>
+        <section className={styles.activity}>
           <div>
             {/* book to shelve */}
             {!dropped && (
@@ -117,7 +117,7 @@ export default function LessonContainer(props: {
         ) : (
           <div>
             <p>Incorrect. Reset the lesson and try again!</p>
-            <button onClick={resetLesson}>Reset</button>
+            <button onClick={resetActivity}>Reset</button>
           </div>
         )}
       </section>

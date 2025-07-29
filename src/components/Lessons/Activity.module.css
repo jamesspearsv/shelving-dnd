@@ -1,8 +1,8 @@
-.lessonContainer {
+.container {
   margin-inline: 1.75rem;
 }
 
-.lesson {
+.activity {
   display: flex;
 }
 
