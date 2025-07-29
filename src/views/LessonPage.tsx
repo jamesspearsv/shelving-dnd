@@ -5,11 +5,14 @@ import LessonContainer from '@src/components/Lessons/LessonContainer';
 export default function LessonPage() {
   //! Look up how to use useParams
   const { name } = useParams();
-  const searchParams = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  // TODO: add logic to parse activity number param
+  const activityParam = searchParams.get('activity');
+  const activityNumber = activityParam ? parseInt(activityParam) : 0;
 
   // TODO: handle activity completion
   function handleCompletion() {
-    console.log(searchParams);
+    // update activity search param
   }
 
   if (!name) return null;
