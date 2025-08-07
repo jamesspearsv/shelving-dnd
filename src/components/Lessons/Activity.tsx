@@ -10,6 +10,7 @@ export default function Activity(props: {
   name: string;
   activity: Activity;
   handleCompletion: () => void;
+  lastActivity: boolean;
 }) {
   const [dropped, setDropped] = useState(false);
   const [correct, setCorrect] = useState(false);
@@ -111,8 +112,14 @@ export default function Activity(props: {
           </p>
         ) : correct ? (
           <div>
-            <p>Correct!</p>
-            <button onClick={continueLesson}>Continue</button>
+            <p>
+              {!props.lastActivity
+                ? 'Correct! Continue to the next activity.'
+                : 'You have finished this lesson! Go back to the lesson screen to continue.'}
+            </p>
+            <button onClick={continueLesson}>
+              {!props.lastActivity ? 'Next activity' : 'Back to lessons'}
+            </button>
           </div>
         ) : (
           <div>

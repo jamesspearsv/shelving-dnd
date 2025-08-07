@@ -1,9 +1,13 @@
-import { useParams, useSearchParams } from 'react-router-dom';
-import lessons from '@src/lib/lessons';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import LESSONS from '@src/lib/lessons';
 import Activity from '@src/components/Lessons/Activity';
+
+// TODO: Add a lesson introduction element
+// The element should appear when the first activity is rendered and anytime the user chooses to re-read the introduction information.
 
 export default function Lesson() {
   const { name } = useParams();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const activityParam = searchParams.get('activity');
@@ -13,19 +17,22 @@ export default function Lesson() {
   function handleCompletion() {
     if (activityNumber < lesson.activities.length - 1) {
       setSearchParams({ activity: `${activityNumber + 1}` });
-    } else return; // TODO: handle lesson completion
+    } else navigate('/lessons');
   }
 
   if (!name) return null;
-  if (!(name in lessons)) return null;
+  if (!(name in LESSONS)) return null;
 
-  const lesson = lessons[name];
+  const lesson = LESSONS[name];
 
   return (
-    <Activity
-      name={lesson.name}
-      activity={lesson.activities[activityNumber]}
-      handleCompletion={handleCompletion}
-    />
+    <>
+      <Activity
+        name={lesson.name}
+        activity={lesson.activities[activityNumber]}
+        handleCompletion={handleCompletion}
+        lastActivity={activityNumber == lesson.activities.length - 1}
+      />
+    </>
   );
 }
