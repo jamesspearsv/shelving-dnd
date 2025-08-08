@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import styles from './LessonHeader.module.css';
-import Modal from '../Modal';
+import styles from './MainMenuButton.module.css';
+import Modal from './Modal';
 import { useModal } from '@src/lib/hooks';
 
-export default function LessonHeader(props: { name: string }) {
+export default function MainMenuButton() {
   const navigate = useNavigate();
   const modal = useModal();
   function navigateToMainMenu() {
@@ -12,10 +12,7 @@ export default function LessonHeader(props: { name: string }) {
 
   return (
     <>
-      <section className={styles.headerContainer}>
-        <h1>Lesson: {props.name}</h1>
-        <button onClick={() => modal.setOpen(true)}>Main Menu</button>
-      </section>
+      <button onClick={() => modal.setOpen(true)}>Main Menu</button>
       <Modal ref={modal.ref}>
         <section className={styles.modalContent}>
           <p>

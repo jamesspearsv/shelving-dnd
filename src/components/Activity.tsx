@@ -1,9 +1,8 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core';
-import Draggable from '../Draggable';
-import Droppable from '../Droppable';
+import Draggable from './Draggable';
+import Droppable from './Droppable';
 import styles from './Activity.module.css';
 import { useEffect, useState } from 'react';
-import LessonHeader from './LessonHeader';
 import type { Activity, Book } from '@src/lib/types';
 
 export default function Activity(props: {
@@ -68,8 +67,7 @@ export default function Activity(props: {
   }
 
   return (
-    <div className={styles.container}>
-      <LessonHeader name={props.name} />
+    <section className={styles.container}>
       <DndContext onDragEnd={handleDragEnd}>
         <section className={styles.activity}>
           <div>
@@ -104,6 +102,7 @@ export default function Activity(props: {
           </div>
         </section>
       </DndContext>
+      {/* TODO: Improve feedback UI */}
       <section>
         {!dropped ? (
           <p>
@@ -128,6 +127,6 @@ export default function Activity(props: {
           </div>
         )}
       </section>
-    </div>
+    </section>
   );
 }

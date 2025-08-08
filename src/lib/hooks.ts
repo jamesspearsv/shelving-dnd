@@ -4,8 +4,8 @@ export function useModal() {
   const ref = useRef<HTMLDialogElement | null>(null);
   const [open, setOpen] = useState(false);
 
+  // Add close event listener to referenced dialog element
   useEffect(() => {
-    console.log(ref.current);
     if (!ref.current) return;
 
     const controller = new AbortController();
@@ -24,6 +24,7 @@ export function useModal() {
     };
   });
 
+  // Handle modal opening and closing effect
   useEffect(() => {
     if (!ref.current) return;
 

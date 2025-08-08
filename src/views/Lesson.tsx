@@ -1,9 +1,8 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import LESSONS from '@src/lib/lessons';
-import Activity from '@src/components/Lessons/Activity';
-
-// TODO: Add a lesson introduction element
-// The element should appear when the first activity is rendered and anytime the user chooses to re-read the introduction information.
+import Activity from '@src/components/Activity';
+import LessonIntro from '@src/components/LessonIntro';
+import MainMenuButton from '@src/components/MainMenuButton';
 
 export default function Lesson() {
   const { name } = useParams();
@@ -26,13 +25,18 @@ export default function Lesson() {
   const lesson = LESSONS[name];
 
   return (
-    <>
+    <section>
+      <div style={{ display: 'flex', gap: '1rem' }}>
+        <h1>{lesson.name}</h1>
+        <LessonIntro init={activityNumber === 0} />
+        <MainMenuButton />
+      </div>
       <Activity
         name={lesson.name}
         activity={lesson.activities[activityNumber]}
         handleCompletion={handleCompletion}
         lastActivity={activityNumber == lesson.activities.length - 1}
       />
-    </>
+    </section>
   );
 }
