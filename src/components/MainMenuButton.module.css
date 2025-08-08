@@ -1,0 +1,16 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalContent {
+  text-align: center;
+}
+
+.modalButtons {
+  margin-block: 1rem;
+}
+
+.modalButtons > button {
+  margin-inline: 0.25rem;
+}

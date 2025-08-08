@@ -11,11 +11,12 @@ export default function Draggable(props: DraggableProps) {
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
       : undefined,
     width: 'fit-content',
+    cursor: 'grab',
   };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
       {props.children}
-    </button>
+    </div>
   );
 }

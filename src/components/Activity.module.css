@@ -1,0 +1,60 @@
+.container {
+  margin-inline: 1.75rem;
+}
+
+.activity {
+  display: flex;
+}
+
+.shelf {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+  border-bottom: solid black 15px;
+}
+
+.slot {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  padding-bottom: 0;
+}
+
+.slot > * {
+  padding: 0.5rem;
+}
+
+.book {
+  background-color: var(--clr-accent-0);
+  color: var(--clr-light-0);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10vw;
+  min-height: 50vh;
+  padding: 0.75rem;
+  padding-bottom: 0;
+}
+
+.spine {
+  text-align: center;
+  letter-spacing: 1px;
+  flex-grow: 2;
+  word-wrap: break-word;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.callNo {
+  margin-top: auto;
+  margin-bottom: 0.75rem;
+  background-color: var(--clr-light-0);
+  color: var(--clr-dark-0);
+  padding-block: 0.25rem;
+  text-align: center;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+}
