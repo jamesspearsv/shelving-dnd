@@ -28,7 +28,7 @@ export default function Lesson() {
     <section>
       <div style={{ display: 'flex', gap: '1rem' }}>
         <h1>{lesson.name}</h1>
-        <LessonIntro init={activityNumber === 0} />
+        <LessonIntro content={lesson.intro} init={activityNumber === 0} />
         <MainMenuButton />
       </div>
       <Activity

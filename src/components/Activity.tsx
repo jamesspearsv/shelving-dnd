@@ -3,7 +3,8 @@ import Draggable from './Draggable';
 import Droppable from './Droppable';
 import styles from './Activity.module.css';
 import { useEffect, useState } from 'react';
-import type { Activity, Book } from '@src/lib/types';
+import type { Activity, BookInterface } from '@src/lib/types';
+import Book from './Book';
 
 export default function Activity(props: {
   name: string;
@@ -13,7 +14,7 @@ export default function Activity(props: {
 }) {
   const [dropped, setDropped] = useState(false);
   const [correct, setCorrect] = useState(false);
-  const [shelf, setShelf] = useState<Book[]>([]);
+  const [shelf, setShelf] = useState<BookInterface[]>([]);
 
   // reset state when activity shelf changes
   useEffect(() => {
@@ -74,13 +75,11 @@ export default function Activity(props: {
             {/* book to shelve */}
             {!dropped && (
               <Draggable index={-1} item={props.activity.book}>
-                <div className={styles.slot}>
-                  <div className={styles.book}>
-                    <p>{props.activity.book.title}</p>
-                    <p>{props.activity.book.author}</p>
-                    <p>{props.activity.book.call_no}</p>
-                  </div>
-                </div>
+                <Book
+                  title={props.activity.book.title}
+                  author={props.activity.book.author}
+                  call_no={props.activity.book.call_no}
+                />
               </Draggable>
             )}
           </div>
@@ -88,15 +87,13 @@ export default function Activity(props: {
             {/* shelved books */}
             {shelf.map((book, index) => {
               return (
-                <div key={index} className={styles.slot}>
-                  <Droppable index={index}>
-                    <div className={styles.book}>
-                      <p>{book.title}</p>
-                      <p>{book.author}</p>
-                      <p>{book.call_no}</p>
-                    </div>
-                  </Droppable>
-                </div>
+                <Droppable index={index}>
+                  <Book
+                    title={book.title}
+                    author={book.author}
+                    call_no={book.call_no}
+                  />
+                </Droppable>
               );
             })}
           </div>
@@ -105,10 +102,7 @@ export default function Activity(props: {
       {/* TODO: Improve feedback UI */}
       <section>
         {!dropped ? (
-          <p>
-            Place the book to the left in the correct place on the shelf to the
-            right.
-          </p>
+          <p>Sort the book above into the correct place on the shelf.</p>
         ) : correct ? (
           <div>
             <p>

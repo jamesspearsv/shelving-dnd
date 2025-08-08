@@ -1,9 +1,9 @@
-import { type Book } from '@src/lib/types';
+import { type BookInterface } from '@src/lib/types';
 
 export const levelInfo: string =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNwT7S_YjodphLlQXxt9NqXX2o7ibX__wjdXCAnyIV9ZXvnAtPK-ZLPifLJm8MKdF8DlTIg1RYgCdd/pub?gid=0&single=true&output=csv';
 
-export const books: Book[] = [
+export const books: BookInterface[] = [
   {
     call_no: 'ADA Realm 1',
     author: 'Terry Adams',

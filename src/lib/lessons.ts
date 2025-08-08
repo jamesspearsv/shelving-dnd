@@ -3,6 +3,8 @@ import type { Lesson } from './types';
 const LESSONS = {
   'basic-sorting': {
     name: 'Basic Sorting',
+    intro:
+      '## Basic Sorting\n\n> This lesson covers basic sorting using call numbers.\n\nFor each activity in this lesson place the unshelved book in its correct spot on the shelf.\n\nRemember that a call number is the label at the bottom of the spine that include information about the last name of an author and other information.\n\n **Hint:** Items are sorted in alphabetical order according to the information on their spinel label.',
     activities: [
       {
         book: {
@@ -104,6 +106,8 @@ const LESSONS = {
   },
   'authors-and-titles': {
     name: 'Sorting by Authors and Titles',
+    intro:
+      "## Sorting by Authors and Titles\n\n> This lesson focuses on sorting items by authors and titles.\n\nOften there will not be enough information on a spine label to shelf an item where it belongs. Remember that in these cases you have to look at the author and maybe the title to figure out where an item should be sorted.\n\nIf you get stumped remember to take a carful look first at the author's first and then last name. Authors with the same last name should be alphabetized by first name. Books by the same author should be alphabetized by title.\n\n**Hint:** Remember when you are alphabetizing names and words to compare them together one letter at a time.",
     activities: [
       {
         book: {
@@ -199,6 +203,8 @@ const LESSONS = {
   },
   'nothing-before-something': {
     name: 'Using Nothing Before Something',
+    intro:
+      '## Using nothing before something\n\n>This lesson focuses on using the rule of nothing before something\n\nNothing before something is an important rule to help sorting similarly spelled names and titles. When you are comparing two names or words that are have similar roots or parts, the word or name that has *nothing* first will always be sorted before the word or name that has *something*.\n\n**Hint:** The word *bird* will always be sorted before the word *birds*',
     activities: [
       {
         book: {
@@ -294,6 +300,8 @@ const LESSONS = {
   },
   'drop-words': {
     name: 'Handling Drop Words',
+    intro:
+      '## Handling Drop Words\n\n>This lesson focuses on sorting titles that contain drop words\n\nDrop words are three special words that are ignored when they appear as the first word in a title. They are ignored because they often appear in as the first word in many titles but have not real bearing on how the title should be sorted.\n\nDrop words are the articles *a*,*an*, and *the* only when they are the first word in a title.\n\n**Hint:** *The Fellowship of the Ring** by J.R.R. Tolkien should be read as ~~The~~ *Fellowship of the Ring* when you are sorting',
     activities: [
       {
         book: {

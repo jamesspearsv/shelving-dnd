@@ -1,0 +1,9 @@
+.markdown-container blockquote {
+  border-left: solid 3px var(--clr-accent-0);
+  padding: 0.25rem;
+  margin-block: 0.5rem;
+}
+
+.markdown-container p {
+  margin-block: 0.25rem;
+}
