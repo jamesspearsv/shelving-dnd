@@ -104,7 +104,7 @@ export default function Activity(props: {
         {!dropped ? (
           <p>Sort the book above into the correct place on the shelf.</p>
         ) : correct ? (
-          <div>
+          <div className={styles.feedback}>
             <p>
               {!props.lastActivity
                 ? 'Correct! Continue to the next activity.'
