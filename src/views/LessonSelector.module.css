@@ -1,0 +1,18 @@
+.lessonContainer {
+    width: 40dvw;
+    margin: auto;
+    text-align: center;
+}
+
+.lessonLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-block: .25rem;
+}
+
+.lessonLink > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
